@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                background-color: #ffffff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .login-container {
+                background-color: #666565;
+                padding: 250px 20px;
+                border-radius: 10px;
+                box-shadow: 0px 2px 5px rgb(0, 0, 0);
+            }
+
+            .login-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .login-container input[type="text"],
+            .login-container input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+
+            .btn-login {
+                display: block;
+                margin: 0 auto;
+                background-color: #0004ff;
+                color: #ffffff;
+                padding: 10px 40px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .btn-login:hover {
+                box-shadow: 0px 2px 5px rgb(0, 0, 0);
+            }
+
+            .btn-register {
+                display: block;
+                margin: 10px auto 0 auto;
+                background-color: #0004ff;
+                color: #ffffff;
+                padding: 10px 40px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-decoration: none;
+                text-align: center;
+            }
+
+            .btn-register:hover {
+                box-shadow: 0px 2px 5px rgb(0, 0, 0);
+            }
+    </style>
+    </head>
+
+    <body>
+        <div class="login-container">
+            <h2>Iniciar Sesión</h2>
+            <form action="Principal.html" method="post">
+                <input type="text" placeholder="Usuario" required>
+                <input type="password" placeholder="Contraseña" required>
+                <button type="submit" class="btn-login">Entrar</button>
+                <a href="registro.html" class="btn-register">¿No tienes una cuenta? - Registrate ahora mismo!</a>
+            </form>
+        </div>
+    </body>
+</html>
