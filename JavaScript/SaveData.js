@@ -1,5 +1,57 @@
 let personas = [];
 
+let users = JSON.parse(localStorage.getItem('users')) || [];
+
+function registerUser() {
+  let username = document.getElementById('username').value.trim();
+  let password = document.getElementById('password').value;
+  let confirmPassword = document.getElementById('confirmPassword').value;
+
+  if (!username || !password || !confirmPassword) {
+    alert('Todos los campos son obligatorios');
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert('Las contraseñas no coinciden');
+    return;
+  }
+
+  if (users.some(u => u.username === username)) {
+    alert('El usuario ya existe');
+    return;
+  }
+
+  if (users.some(u => u.ADMIN === password)) {
+    alert('La contraseña no puede ser "ADMIN"');
+    return;
+  }
+
+  users.push({username, password});
+  localStorage.setItem('users', JSON.stringify(users));
+  alert('Usuario registrado correctamente');
+  window.location.href = 'login.html';
+}
+
+function loginUser() {
+  let username = document.getElementById('loginUsername').value.trim();
+  let password = document.getElementById('loginPassword').value;
+
+  if (!username || !password) {
+    alert('Usuario y contraseña requeridos');
+    return;
+  }
+
+  let user = users.find(u => u.username === username && u.password === password);
+
+  if (user) {
+    alert('Login exitoso');
+    window.location.href = 'Principal.html';
+  } else {
+    alert('Credenciales inválidas');
+  }
+}
+
 if (personas.getElementById("ADMIN")) {
     
     function guardar() {
@@ -31,16 +83,13 @@ if (personas.getElementById("ADMIN")) {
         }
     }
 
-    // FUNCION MOSTRAR
     function mostrar() {
         let tabla = document.getElementById("tabla");
         tabla.innerHTML = "";
 
-        //METODO LENGHT
+
         for (let i = 0; i < personas.length; i++) {
 
-            //METODO INNER
-            //MENSAJE ALERT PARA PERMITIR ELIMINAR UN DATO
             tabla.innerHTML += `
                 <tr>
                     <td>${personas[i].nombre}</td>
@@ -59,7 +108,6 @@ if (personas.getElementById("ADMIN")) {
         }
     }
 
-    // EDITAR
     function editar(i) {
         document.getElementById("nombre").value = personas[i].nombre;
         document.getElementById("apellido").value = personas[i].apellido;
@@ -71,7 +119,6 @@ if (personas.getElementById("ADMIN")) {
         document.getElementById("indice").value = i;
     }
 
-    // ACTUALIZAR
     function actualizar() {
 
         let i = document.getElementById("indice").value;
@@ -99,7 +146,6 @@ if (personas.getElementById("ADMIN")) {
         }
     }
 
-        // ELIMINAR
         function eliminar(i) {
 
             if (confirm("¿Desea eliminar el registro?")) {
@@ -108,7 +154,6 @@ if (personas.getElementById("ADMIN")) {
             }
         }
 
-    // LIMPIAR
     function limpiar() {
         document.getElementById("nombre").value = "";
         document.getElementById("apellido").value = "";
