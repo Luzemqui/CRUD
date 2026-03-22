@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina principal</title>
-    <style>
+ <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../JavaScript/SaveData.js"></script>
+        <title>Admin</title>
+        <style>
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +16,6 @@
         body {
             background-color: #ffffff;
             margin: 0;
-            /* Leave space for the fixed navbar so page content doesn't sit underneath it */
             padding-top: 80px;
         }
 
@@ -32,7 +32,7 @@
             box-shadow: 0px 2px 5px rgb(0, 0, 0);
         }
 
-        .logo {
+        .admin {
             background-color: #ffffff;
             padding: 10px 20px;
             border-radius: 5px; 
@@ -63,14 +63,14 @@
             box-shadow: 0px 2px 5px rgb(24, 23, 23);
         }
 
-        .btn-login {
+        .btn-regresar {
             background-color: #b9ffff;
             padding: 10px 40px;
             border-radius: 40px;
             font-weight: normal;
         }
 
-        .btn-register {
+        .btn-grafica {
             background-color: #b9ffff;
             padding: 10px 30px;
             border-radius: 40px;
@@ -83,11 +83,11 @@
 <body>
 
     <nav class="navbar">
-        <a href="admin-login.html" class="logo" class="btn-admin">Logo</a>"
+        <a href="#" class="admin">ADMIN</a>
         <div class="nav-links">
-             <a href="login.html" class="btn-login">login</a>
-            <a href="Register.html" class="btn-register">registro</a>
-        </div>
+            <a href="Principal.html" class="btn-regresar">REGRESAR</a>
+            <a href="Register.html" class="btn-grafica">GRAFICA</a>
 
     </nav>
 </body>
+</style>

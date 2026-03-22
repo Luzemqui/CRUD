@@ -52,117 +52,14 @@ function loginUser() {
   }
 }
 
-if (personas.getElementById("ADMIN")) {
-    
-    function guardar() {
+function loginAdmin() {
+  let usernameA = document.getElementById('AdminUsername').value.trim();
+  let passwordA = document.getElementById('AdminPassword').value;
 
-        let nombre = document.getElementById("nombre").value;
-        let apellido = document.getElementById("apellido").value;
-        let edad = document.getElementById("edad").value;
-        let placa = document.getElementById("placa").value;
-        let marca = document.getElementById("marca").value;
-        let modelo = document.getElementById("modelo").value;
-
-        if (nombre === "" || apellido === "" || placa === "" || edad === "") {
-            alert("Todos los campos son obligatorios");
-        } else {
-
-            let persona = {
-                nombre: nombre,
-                apellido: apellido,
-                edad: edad,
-                placa: placa,
-                marca: marca,
-                modelo: modelo,
-
-            };
-
-            personas.push(persona);
-            limpiar();
-            mostrar();
-        }
-    }
-
-    function mostrar() {
-        let tabla = document.getElementById("tabla");
-        tabla.innerHTML = "";
-
-
-        for (let i = 0; i < personas.length; i++) {
-
-            tabla.innerHTML += `
-                <tr>
-                    <td>${personas[i].nombre}</td>
-                    <td>${personas[i].apellido}</td>
-                    <td>${personas[i].edad}</td>
-                    <td>${personas[i].placa}</td>
-                    <td>${personas[i].marca}</td>
-                    <td>${personas[i].modelo}</td>
-
-                    <td>
-                        <button class="btn btn-info btn-sm" onclick="editar(${i})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="eliminar(${i})">Eliminar</button>
-                    </td>
-                </tr>
-            `;
-        }
-    }
-
-    function editar(i) {
-        document.getElementById("nombre").value = personas[i].nombre;
-        document.getElementById("apellido").value = personas[i].apellido;
-        document.getElementById("edad").value = personas[i].edad;
-        document.getElementById("placa").value = personas[i].placa;
-        document.getElementById("marca").value = personas[i].marca;
-        document.getElementById("modelo").value = personas[i].modelo;
-  
-        document.getElementById("indice").value = i;
-    }
-
-    function actualizar() {
-
-        let i = document.getElementById("indice").value;
-        let nombre = document.getElementById("nombre").value;
-        let apellido = document.getElementById("apellido").value;
-        let edad = document.getElementById("edad").value;
-        let placa = document.getElementById("placa").value;
-        let marca = document.getElementById("marca").value;
-        let modelo = document.getElementById("modelo").value;
-      
-
-        if (nombre === "" || apellido === "" || edad  === "" || placa === "" || marca === "" || modelo === "") {
-            alert("No se pueden dejar campos vacíos");
-        } else {
-
-            personas[i].nombre = nombre;
-            personas[i].apellido = apellido;
-            personas[i].edad = edad;
-            personas[i].placa = placa;
-            personas[i].marca = marca;
-            personas[i].modelo = modelo;
-
-            limpiar();
-            mostrar();          
-        }
-    }
-
-        function eliminar(i) {
-
-            if (confirm("¿Desea eliminar el registro?")) {
-                personas.splice(i, 1);
-                mostrar();
-            }
-        }
-
-    function limpiar() {
-        document.getElementById("nombre").value = "";
-        document.getElementById("apellido").value = "";
-        document.getElementById("edad").value = "";
-        document.getElementById("placa").value = "";
-        document.getElementById("marca").value = "";
-        document.getElementById("modelo").value = "";
-
-
-        document.getElementById("indice").value = "";
-    }
+  if (usernameA === "ADMIN" && passwordA === "ADMIN") {
+    alert('Login exitoso');
+    window.location.href = 'CRUD.html';
+  } else {
+    alert("Cuenta o contraseña ingresadas incorrectamente");
+  }
 }
