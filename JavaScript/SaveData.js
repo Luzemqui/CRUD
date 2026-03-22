@@ -1,6 +1,7 @@
 let personas = [];
 
 let users = JSON.parse(localStorage.getItem('users')) || [];
+let admin =JSON.parse(localStorage.getItem('admin')) || {username: 'ADMIN', password: 'ADMIN'};
 
 function registerUser() {
   let username = document.getElementById('username').value.trim();
@@ -24,6 +25,11 @@ function registerUser() {
 
   if (users.some(u => u.ADMIN === password)) {
     alert('La contraseña no puede ser "ADMIN"');
+    return;
+  }
+
+  if (username === "ADMIN") {
+    alert('El nombre de usuario no puede ser "ADMIN"');
     return;
   }
 
