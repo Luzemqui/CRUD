@@ -71,3 +71,33 @@ function mostrarPersonasRegistradas() {
     }
 }
 
+function reporte() {
+    let personas = JSON.parse(localStorage.getItem('motocicletas')) || [];
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    
+    let totalMotos = personas.reduce((sum, p) => sum + parseInt(p.cantidad || 0), 0);
+    let totalPrecio = personas.reduce((sum, p) => sum + (parseFloat(p.precio || 0) * parseInt(p.cantidad || 0)), 0);
+    let numUsers = users.length;
+    let marcas = [...new Set(personas.map(p => p.marca).filter(m => m))].join(', ');
+    
+    let content = `
+        <div class="row">
+            <div class="col-md-6">
+                <h6><strong>Usuarios Registrados:</strong> ${numUsers}</h6>
+            </div>
+            <div class="col-md-6">
+                <h6><strong>Total Motocicletas:</strong> ${totalMotos}</h6>
+            </div>
+            <div class="col-md-6">
+                <h6><strong>Precio Total Aprox:</strong> $${totalPrecio.toLocaleString('es-ES')}</h6>
+            </div>
+            <div class="col-md-6">
+                <h6><strong>Marcas:</strong> ${marcas || 'Ninguna'}</h6>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('reporteContent').innerHTML = content;
+    let modal = new bootstrap.Modal(document.getElementById('reporteModal'));
+    modal.show();
+}

@@ -1,1 +1,12 @@
-# TODO: Admin Login Protection\n\n- [x] 1. Create TODO.md\n- [x] 2. Fix admin-login.html IDs\n- [x] 3. Update SaveData.js with session token\n- [x] 4. Add auth protection to CRUD.html\n- [ ] 5. Update CRUD.html logout link\n- [ ] 6. Test & complete
+# TODO: Resize CRUD box 30% larger
+
+**Status: Complete**
+
+## Steps:
+- [x] Plan approved by user
+- [x] Create TODO.md with steps
+- [x] Edit HTML/CRUD.html: replace both instances of `style="max-width: 1000px;"` with `style="max-width: 1300px;"`
+- [x] Verify change in browser
+- [x] Update TODO.md as completed
+- [x] Attempt completion
+

@@ -75,4 +75,3 @@ function checkAdminAuth() {
     window.location.href = 'admin-login.html';
   }
 }
-
