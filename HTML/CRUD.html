@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD de motocicletas - Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../JavaScript/SaveData.js"></script>
     <script src="../JavaScript/CRUD.js"></script>
+    <script src="../JavaScript/grafica-reporte.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * {
@@ -17,7 +20,7 @@
         body {
             background-color: #ffffff;
             margin: 0;
-            padding-top: 120px; /* Increased separation from navbar */
+            padding-top: 120px;
         }
 
         .navbar {
@@ -37,8 +40,7 @@
         .admin {
             background-color: #ffffff;
             padding: 10px 20px;
-            border-radius: 5px; 
-            display: flex;
+            border-radius: 5px;
             color: #0004ff;
             font-weight: bold;
             font-size: 24px;
@@ -62,59 +64,72 @@
 
         .nav-links a:hover {
             color: #1d1c1c;
-            box-shadow: 0px 2px 5px rgb(24, 23, 23);
         }
 
         .btn-regresar {
             background-color: #b9ffff;
             padding: 10px 40px;
             border-radius: 40px;
-            font-weight: normal;
         }
 
         .btn-grafica {
             background-color: #b9ffff;
             padding: 10px 30px;
             border-radius: 40px;
+            cursor: pointer;
         }
 
-        /* Center and separate CRUD card */
         .crud-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding-top: 2rem; /* Extra separation */
+            padding: 2rem 1rem;
+        }
+
+        .grafica-section {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .grafica-section.show {
+            display: block;
+        }
+
+        canvas {
+            max-height: 400px;
+        }
+
+        .usuarios-table {
+            margin-top: 2rem;
         }
     </style>
-    <!-- Scripts -->
-    <script src="../JavaScript/SaveData.js"></script>
-    <script src="script.js"></script>
 </head>
 
-<body class="bg-light">
+<body class="bg-light" onload="checkAdminAuth(); mostrar();">
 
-    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="#" class="admin">ADMIN</a>
         <div class="nav-links">
-            <a href="Principal.html" class="btn-regresar">REGRESAR</a>
-            <a href="Register.html" class="btn-grafica">GRAFICA</a>
+            <a href="#" onclick="logoutAdmin(); return false;" class="btn-regresar">REGRESAR</a>
+            <a href="#" onclick="toggleGrafica()" class="btn-grafica">GRAFICA</a>
         </div>
     </nav>
 
-    <!-- MAIN CRUD CONTENT - CENTERED & SEPARATED -->
-    <div class="container-fluid mt-5 pt-5 crud-container">
+    <!-- CRUD Section -->
+    <div class="container-fluid crud-container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-10">
                 <div class="card shadow mx-auto" style="max-width: 1000px;">
                     <div class="card-header bg-primary text-white text-center">
                         <h4 class="mb-0">CRUD de motocicletas</h4>
                     </div>
-
                     <div class="card-body">
                         <input type="hidden" id="indice">
 
-                        <!-- FORM INPUTS -->
                         <div class="row mb-3 g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" id="nombre" class="form-control">
+                            </div>
                             <div class="col-md-6">
                                 <label class="form-label">Precio</label>
                                 <input type="text" id="precio" class="form-control">
@@ -137,17 +152,16 @@
                             </div>
                         </div>
 
-                        <!-- BUTTONS - CENTERED -->
                         <div class="mb-3 text-center">
                             <button class="btn btn-success me-2" onclick="guardar()">Guardar</button>
                             <button class="btn btn-warning" onclick="actualizar()">Actualizar</button>
+                            <button class="btn btn-info text-white" onclick="reporte()">Reporte</button>
                         </div>
 
                         <hr>
 
-                        <!-- TABLE BELOW FORM -->
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover mx-auto">
+                            <table class="table table-bordered table-hover">
                                 <thead class="table-dark">
                                     <tr>
                                         <th width="200">Nombre</th>
@@ -156,10 +170,35 @@
                                         <th width="200">Placa</th>
                                         <th width="200">Marca</th>
                                         <th width="200">Modelo</th>
+                                        <th width="50">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabla"></tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráfica & Usuarios Section -->
+    <div class="container-fluid crud-container grafica-section" id="graficaSection">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="card shadow mx-auto" style="max-width: 1000px;">
+                    <div class="card-header bg-success text-white text-center">
+                        <h4 class="mb-0">Gráfica y Reporte de Motocicletas</h4>
+                        <button class="btn btn-outline-light btn-sm mt-2" onclick="toggleGrafica()">← Volver a CRUD</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,5 @@
-let personas = [];
-
 let users = JSON.parse(localStorage.getItem('users')) || [];
-let admin =JSON.parse(localStorage.getItem('admin')) || {username: 'ADMIN', password: 'ADMIN'};
+let admin = JSON.parse(localStorage.getItem('admin')) || {username: 'ADMIN', password: 'ADMIN'};
 
 function registerUser() {
   let username = document.getElementById('username').value.trim();
@@ -20,11 +18,6 @@ function registerUser() {
 
   if (users.some(u => u.username === username)) {
     alert('El usuario ya existe');
-    return;
-  }
-
-  if (users.some(u => u.ADMIN === password)) {
-    alert('La contraseña no puede ser "ADMIN"');
     return;
   }
 
@@ -51,6 +44,7 @@ function loginUser() {
   let user = users.find(u => u.username === username && u.password === password);
 
   if (user) {
+    localStorage.setItem('userSession', JSON.stringify({type: 'user', username}));
     alert('Login exitoso');
     window.location.href = 'Principal.html';
   } else {
@@ -63,9 +57,22 @@ function loginAdmin() {
   let passwordA = document.getElementById('AdminPassword').value;
 
   if (usernameA === "ADMIN" && passwordA === "ADMIN") {
-    alert('Login exitoso');
+    localStorage.setItem('adminSession', 'true');
+    alert('Login Admin exitoso');
     window.location.href = 'CRUD.html';
   } else {
-    alert("Cuenta o contraseña ingresadas incorrectamente");
+    alert("Credenciales incorrectas");
   }
 }
+
+function logoutAdmin() {
+  localStorage.removeItem('adminSession');
+  window.location.href = 'Principal.html';
+}
+
+function checkAdminAuth() {
+  if (!localStorage.getItem('adminSession')) {
+    window.location.href = 'admin-login.html';
+  }
+}
+

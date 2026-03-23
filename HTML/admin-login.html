@@ -63,12 +63,6 @@
             background: rgba(255, 255, 255, 0.8);
         }
 
-        .form-control:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-            transform: translateY(-2px);
-        }
-
         .form-control:focus {
             outline: none;
             border-color: #667eea;
@@ -108,13 +102,6 @@
             box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
             color: white;
         }
-
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 30px 20px;
-                margin: 10px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -122,12 +109,12 @@
         <h2 class="login-title">Admin Login</h2>
         <form>
             <div class="form-group">
-                <input type="text" class="form-control" id="UsernameA" placeholder="Usuario" required>
+                <input type="text" class="form-control" id="AdminUsername" placeholder="Usuario" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="PasswordA" placeholder="Contraseña" required>
+                <input type="password" class="form-control" id="AdminPassword" placeholder="Contraseña" required>
             </div>
-            <button href= "CRUD.html" e="button" class="btn btn-login" onclick="loginAdmin()">Entrar</button>
+            <button type="button" class="btn btn-login" onclick="loginAdmin()">Entrar</button>
             <button type="button" class="btn btn-back" onclick="window.location.href='Principal.html'">Regresar</button>
         </form>
     </div>

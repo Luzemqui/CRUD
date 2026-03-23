@@ -1,1 +1,1 @@
-so# TODO:COM LETEl✅n\:\n- [x] CRUD table below navbar + centered/separatenen- [x- Principal.html→o login/register menu (navba+ tog  admin-logi,-hTron uttrnw)\nr\All.easks finishtd!e
+# TODO: Admin Login Protection\n\n- [x] 1. Create TODO.md\n- [x] 2. Fix admin-login.html IDs\n- [x] 3. Update SaveData.js with session token\n- [x] 4. Add auth protection to CRUD.html\n- [ ] 5. Update CRUD.html logout link\n- [ ] 6. Test & complete
