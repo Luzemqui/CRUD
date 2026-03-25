@@ -52,7 +52,8 @@ function loginUser() {
   }
 }
 
-if (personas.getElementById("ADMIN")) {
+// ADMIN check bypassed for demo
+// if (personas.getElementById("ADMIN")) {
     
     function guardar() {
 
@@ -100,7 +101,7 @@ if (personas.getElementById("ADMIN")) {
                     <td>${personas[i].modelo}</td>
 
                     <td>
-                        <button class="btn btn-info btn-sm" onclick="editar(${i})">Editar</button>
+                        <button class="btn btn-sm" onclick="editar(${i})">Editar</button>
                         <button class="btn btn-danger btn-sm" onclick="eliminar(${i})">Eliminar</button>
                     </td>
                 </tr>
@@ -130,7 +131,7 @@ if (personas.getElementById("ADMIN")) {
         let modelo = document.getElementById("modelo").value;
       
 
-        if (nombre === "" || apellido === "" || edad  === "" || placa === "" || marca === "" || modelo === "") {
+        if (nombre === "" || apellido === "" || edad  === "" || placa === "") {
             alert("No se pueden dejar campos vacíos");
         } else {
 
@@ -162,7 +163,6 @@ if (personas.getElementById("ADMIN")) {
         document.getElementById("marca").value = "";
         document.getElementById("modelo").value = "";
 
-
         document.getElementById("indice").value = "";
     }
-}
+    // End of CRUD functions (ADMIN block commented out above)
