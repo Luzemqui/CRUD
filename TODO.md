@@ -1,12 +1,11 @@
-# TODO: Resize CRUD box 30% larger
-
-**Status: Complete**
+# TODO: Update Reporte to Match Graph Data + Pie Chart
 
 ## Steps:
-- [x] Plan approved by user
-- [x] Create TODO.md with steps
-- [x] Edit HTML/CRUD.html: replace both instances of `style="max-width: 1000px;"` with `style="max-width: 1300px;"`
-- [x] Verify change in browser
-- [x] Update TODO.md as completed
-- [x] Attempt completion
+- [x] Previous pie chart changes
+- [x] Step 6: Edit reporte() to add per-motocicleta table (nombre | cantidad)
+- [x] Step 7: Test reporte modal
+- [x] Step 8: Complete
 
+**Status:** ✅ Feedback implemented. Reporte now shows summary + table matching graph data (nombre - cantidad).
+
+**Status:** ✅ All complete: Pie chart + reporte with matching detail table.

@@ -27,23 +27,41 @@ function generarGrafica() {
     }
 
     grafica = new Chart(ctx, {
-        type: 'bar',
+type: 'pie',
         data: {
             labels: nombres,
             datasets: [{
                 label: 'Cantidad por Motocicleta',
                 data: cantidades,
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
+backgroundColor: [
+    'rgba(255, 99, 132, 0.6)',
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 206, 86, 0.6)',
+    'rgba(75, 192, 192, 0.6)',
+    'rgba(153, 102, 255, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(199, 199, 199, 0.6)',
+    'rgba(83, 102, 255, 0.6)'
+],
+borderColor: [
+    'rgba(255, 99, 132, 1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 206, 86, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(255, 159, 64, 1)',
+    'rgba(199, 199, 199, 1)',
+    'rgba(83, 102, 255, 1)'
+],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true
+plugins: {
+                legend: {
+                    position: 'bottom'
                 }
             }
         }
@@ -80,8 +98,22 @@ function reporte() {
     let numUsers = users.length;
     let marcas = [...new Set(personas.map(p => p.marca).filter(m => m))].join(', ');
     
+    let detalleRows = '';
+    if (personas.length === 0) {
+        detalleRows = '<tr><td colspan="2" class="text-center">No hay motocicletas registradas</td></tr>';
+    } else {
+        personas.forEach((p, index) => {
+            detalleRows += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${p.nombre} - Cantidad: ${p.cantidad}</td>
+                </tr>
+            `;
+        });
+    }
+
     let content = `
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-md-6">
                 <h6><strong>Usuarios Registrados:</strong> ${numUsers}</h6>
             </div>
@@ -93,7 +125,21 @@ function reporte() {
             </div>
             <div class="col-md-6">
                 <h6><strong>Marcas:</strong> ${marcas || 'Ninguna'}</h6>
-            </div>
+        </div>
+
+        <hr>
+
+        <h6><strong>Detalle por Motocicleta (igual que gráfica):</strong></h6>
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre - Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>${detalleRows}</tbody>
+            </table>
         </div>
     `;
     
