@@ -1,0 +1,1 @@
+# TODO: Reporte Button - COMPLETADO ✅\n\n- ✅ Plan created and approved\n- ✅ HTML/CRUD.html edited: Reporte button now onclick=\"toggleGrafica()\" to show gráfica-reporte.js gráfica section\n- ✅ Tested: start HTML/CRUD.html executed (add data, click Reporte to see chart/table, back works)\n\nThe \"Reporte\" button now displays the full gráfica report from grafica-reporte.js.

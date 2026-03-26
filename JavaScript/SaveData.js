@@ -1,6 +1,5 @@
-let personas = [];
-
 let users = JSON.parse(localStorage.getItem('users')) || [];
+let admin = JSON.parse(localStorage.getItem('admin')) || {username: 'ADMIN', password: 'ADMIN'};
 
 function registerUser() {
   let username = document.getElementById('username').value.trim();
@@ -22,8 +21,8 @@ function registerUser() {
     return;
   }
 
-  if (users.some(u => u.ADMIN === password)) {
-    alert('La contraseña no puede ser "ADMIN"');
+  if (username === "ADMIN") {
+    alert('El nombre de usuario no puede ser "ADMIN"');
     return;
   }
 
@@ -45,6 +44,7 @@ function loginUser() {
   let user = users.find(u => u.username === username && u.password === password);
 
   if (user) {
+    localStorage.setItem('userSession', JSON.stringify({type: 'user', username}));
     alert('Login exitoso');
     window.location.href = 'Principal.html';
   } else {
@@ -52,8 +52,7 @@ function loginUser() {
   }
 }
 
-// ADMIN check bypassed for demo
-// if (personas.getElementById("ADMIN")) {
+if (personas.getElementById("ADMIN")) {
     
     function guardar() {
 
@@ -101,7 +100,7 @@ function loginUser() {
                     <td>${personas[i].modelo}</td>
 
                     <td>
-                        <button class="btn btn-sm" onclick="editar(${i})">Editar</button>
+                        <button class="btn btn-info btn-sm" onclick="editar(${i})">Editar</button>
                         <button class="btn btn-danger btn-sm" onclick="eliminar(${i})">Eliminar</button>
                     </td>
                 </tr>
@@ -131,7 +130,7 @@ function loginUser() {
         let modelo = document.getElementById("modelo").value;
       
 
-        if (nombre === "" || apellido === "" || edad  === "" || placa === "") {
+        if (nombre === "" || apellido === "" || edad  === "" || placa === "" || marca === "" || modelo === "") {
             alert("No se pueden dejar campos vacíos");
         } else {
 
@@ -163,6 +162,7 @@ function loginUser() {
         document.getElementById("marca").value = "";
         document.getElementById("modelo").value = "";
 
+
         document.getElementById("indice").value = "";
     }
-    // End of CRUD functions (ADMIN block commented out above)
+}
